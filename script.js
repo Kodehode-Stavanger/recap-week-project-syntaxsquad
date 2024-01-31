@@ -109,3 +109,85 @@ const topSellers = [
     logo: "mario-kart-logo.jpg",
   },
 ];
+
+for (let item of topSellers) {
+  const cardContainer = document.createElement("div");
+  cardContainer.classList.add("card-container");
+  const contentContainer = document
+    .getElementById("content-container")
+    .append(cardContainer);
+
+  const imageContainer = document.createElement("div");
+  imageContainer.classList.add("image-container");
+  const textContainer = document.createElement("div");
+  textContainer.classList.add("text-container");
+  cardContainer.append(textContainer, imageContainer);
+
+  const img = document.createElement("img");
+  img.src = `logos/${item.logo}`;
+
+  const imgBox = document.createElement("div");
+  const logoBox = document.createElement("div");
+  logoBox.classList.add("logo-box");
+
+  for (let platform of item.platforms) {
+    const logoDiv = document.createElement("div");
+    logoDiv.classList.add("logo-circle");
+
+    const logo = document.createElement("img");
+    logo.src = `logo/${platform}.png`;
+    logo.classList.add("logo");
+
+    logoDiv.append(logo);
+    logoBox.append(logoDiv);
+  }
+  imgBox.append(img);
+
+  imageContainer.append(imgBox, logoBox);
+
+  const title = document.createElement("h2");
+  title.textContent = item.title;
+
+  const row1 = document.createElement("div");
+  row1.classList.add("row");
+  const subtitle1 = document.createElement("h3");
+  subtitle1.textContent = "Developer:";
+  subtitle1.classList.add("bold");
+
+  const dev = document.createElement("h3");
+  dev.textContent = item.developer;
+  row1.append(subtitle1, dev);
+
+  const row2 = document.createElement("div");
+  row2.classList.add("row");
+  const subtitle2 = document.createElement("h3");
+  subtitle2.textContent = "Release Year:";
+  subtitle2.classList.add("bold");
+
+  const release = document.createElement("h3");
+  release.textContent = item.releaseYear;
+  row2.append(subtitle2, release);
+
+  const paragraph = document.createElement("p");
+  paragraph.textContent = item.description;
+
+  const spacer = document.createElement("div");
+  spacer.classList.add("spacer");
+
+  const row3 = document.createElement("div");
+  row3.classList.add("row", "row3");
+
+  const catContainer = document.createElement("div");
+  catContainer.classList.add("row");
+  row3.append(catContainer);
+
+  for (let category of item.categories) {
+    const catBox = document.createElement("div");
+    catBox.classList.add("cat-box");
+    catContainer.append(catBox);
+    const text = document.createElement("h4");
+    text.textContent = category;
+    catBox.append(text);
+  }
+  textContainer.append(title, row1, row2, paragraph, spacer, row3);
+}
